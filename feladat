@@ -1,0 +1,8 @@
+Csináljunk egy API-t a generálásra
+a két presentation layer-beli végpontokhoz csapjunk hozzá egy api-t is
+végpontra beküldjük a slack export fájlban lévő tartalmat majd responseban egy tömbként visszakapjuk a message-ekben található képeket
+
+ha eddig fájlról  volt szó, akkor hogy lesz ebből json rest api
+
+
+- új controller:
