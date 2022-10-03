@@ -2,9 +2,10 @@
 
 namespace App\ParserBundle\Domain\Slack;
 
-class SlackPost
+class File
 {
     public function __construct(
-        public readonly FileCollection $files
-    ){}
+        public readonly string $urlPrivateDownload
+    ) {
+    }
 }
