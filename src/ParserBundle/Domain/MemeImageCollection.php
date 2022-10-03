@@ -6,6 +6,7 @@ use ArrayAccess;
 use ArrayIterator;
 use Countable;
 use App\ParserBundle\Domain\Exception\DomainException;
+use App\ParserBundle\Domain\Slack\SlackPostCollection;
 use IteratorAggregate;
 use TypeError;
 
@@ -76,6 +77,17 @@ final class MemeImageCollection implements ArrayAccess, IteratorAggregate, Count
             }
         }
 
+        return new self(...$urls);
+    }
+
+    public static function createFromSlackPostCollection(SlackPostCollection $slackPosts): self
+    {
+        $urls = [];
+        foreach ($slackPosts->getSlackPosts() as $post) {
+          foreach($post->getFiles() as $file) {
+            $urls[] = new MemeImage($file->urlPrivateDownload);
+          }
+        }
         return new self(...$urls);
     }
 }

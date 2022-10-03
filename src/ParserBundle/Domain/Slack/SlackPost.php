@@ -4,7 +4,20 @@ namespace App\ParserBundle\Domain\Slack;
 
 class SlackPost
 {
-    public function __construct(
-        public readonly FileCollection $files
-    ){}
+    /**
+     * @var File[]
+     */
+    private array $files;
+
+    public function __construct(File ...$file){
+        $this->files = $file;
+    }
+
+    /**
+     * @return File[]
+     */
+    public function getFiles(): array
+    {
+        return $this->files;
+    }
 }
