@@ -37,3 +37,15 @@ services:
             -   name: messenger.message_handler
                 bus: query.bus
                 handles: App\ParserBundle\Application\GetShoprenterWorkerById\GetShoprenterWorkerByIdQuery
+
+    App\ParserBundle\Application\GenerateImagesFromSlackExport\GenerateImagesFromSlackExportHandler:
+        tags:
+            - name: messenger.message_handler
+              bus: query.bus
+              handles: App\ParserBundle\Application\GenerateImagesFromSlackExport\GenerateImagesFromSlackExportQuery
+
+    App\ParserBundle\Application\UploadSlackExport\UploadSlackExportHandler:
+        tags:
+            - name: messenger.message_handler
+              bus: query.bus
+              handles: App\ParserBundle\Application\UploadSlackExport\UploadSlackExportCommand

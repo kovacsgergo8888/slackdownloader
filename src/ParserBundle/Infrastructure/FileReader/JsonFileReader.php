@@ -22,4 +22,9 @@ class JsonFileReader
 
         return MemeImageCollection::createFromArray($posts);
     }
+
+    public function getContents(UploadedExportFile $file): string
+    {
+        return $this->filesystem->getContents($file);
+    }
 }

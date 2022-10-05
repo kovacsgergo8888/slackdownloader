@@ -29,4 +29,23 @@ class ZipFileReader extends JsonFileReader
 
     return $urls;
   }
+
+
+  public function getContents(UploadedExportFile $file): string
+  {
+      $dir = $this->filesystem->unZip($file);
+      $files = $this->filesystem->listFiles($dir,"*.json");
+
+      $contents = [];
+      foreach ($files as $file) {
+          $fileContent = $this->filesystem->getContents($file);
+
+          array_merge(
+              $contents,
+              json_decode($fileContent, true)
+          );
+      }
+
+      return json_encode($contents);
+  }
 }
