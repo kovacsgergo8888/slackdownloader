@@ -4,7 +4,7 @@ namespace App\ParserBundle\Infrastructure\FileReader;
 
 use App\ParserBundle\Domain\MemeImageCollection;
 use App\ParserBundle\Infrastructure\FileUploader\UploadedExportFile;
-use App\ParserBundle\Infrastructure\MemeImageParser\SlackExportParser;
+use App\ParserBundle\Infrastructure\SlackExportParser\SlackExportParser;
 use App\ParserBundle\Infrastructure\Shared\Filesystem\FilesystemManager;
 
 class ZipFileReader extends JsonFileReader implements FileReaderInterface
