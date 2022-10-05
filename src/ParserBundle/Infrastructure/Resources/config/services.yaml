@@ -32,14 +32,20 @@ services:
                     bus: query.bus
                     handles: App\ParserBundle\Application\AuthenticateShoprenterWorker\AuthenticateShoprenterWorkerQuery
 
-    App\ParserBundle\Application\GetImagesFromFile\GetImagesFromFileHandler:
-        tags:
-            -   name: messenger.message_handler
-                bus: query.bus
-                handles: App\ParserBundle\Application\GetImagesFromFile\GetImagesFromFileQuery
-
     App\ParserBundle\Application\GetShoprenterWorkerById\GetShoprenterWorkerByIdHandler:
         tags:
             -   name: messenger.message_handler
                 bus: query.bus
                 handles: App\ParserBundle\Application\GetShoprenterWorkerById\GetShoprenterWorkerByIdQuery
+
+    App\ParserBundle\Application\GenerateImagesFromSlackExport\GenerateImagesFromSlackExportHandler:
+        tags:
+            - name: messenger.message_handler
+              bus: query.bus
+              handles: App\ParserBundle\Application\GenerateImagesFromSlackExport\GenerateImagesFromSlackExportQuery
+
+    App\ParserBundle\Application\UploadSlackExport\UploadSlackExportHandler:
+        tags:
+            - name: messenger.message_handler
+              bus: query.bus
+              handles: App\ParserBundle\Application\UploadSlackExport\UploadSlackExportCommand

@@ -3,10 +3,10 @@
 namespace App\ParserBundle\Infrastructure\FileReader;
 
 use App\ParserBundle\Domain\MemeImageCollection;
-use App\ParserBundle\Infrastructure\FileUploader\UploadedExportFile;
+use App\ParserBundle\Domain\UploadedFile\UploadedExportFile;
 use App\ParserBundle\Infrastructure\Shared\Filesystem\FilesystemManager;
 
-class JsonFileReader implements FileReaderInterface
+class JsonFileReader
 {
     protected FilesystemManager $filesystem;
 
@@ -21,5 +21,10 @@ class JsonFileReader implements FileReaderInterface
         $posts = json_decode($json, true);
 
         return MemeImageCollection::createFromArray($posts);
+    }
+
+    public function getContents(UploadedExportFile $file): string
+    {
+        return $this->filesystem->getContents($file);
     }
 }

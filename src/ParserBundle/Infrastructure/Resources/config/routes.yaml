@@ -13,3 +13,7 @@ app_login:
 app_logout:
     path: /logout
     methods: GET
+
+rest_generate:
+    path: /api/meme/generate
+    methods: POST
