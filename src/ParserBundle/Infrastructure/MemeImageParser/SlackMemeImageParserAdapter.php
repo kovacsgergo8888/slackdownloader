@@ -3,12 +3,12 @@
 namespace App\ParserBundle\Infrastructure\MemeImageParser;
 
 use App\ParserBundle\Domain\Exception\DomainException;
+use App\ParserBundle\Domain\InputFile;
 use App\ParserBundle\Domain\MemeImageCollection;
 use App\ParserBundle\Domain\MemeImageParserInterface;
-use App\ParserBundle\Domain\ValueObject\InputFile;
+use App\ParserBundle\Domain\UploadedFile\FileUploaderInterface;
+use App\ParserBundle\Domain\UploadedFile\TempFile;
 use App\ParserBundle\Infrastructure\FileReader\FileReaderInterface;
-use App\ParserBundle\Infrastructure\FileUploader\TempFile;
-use App\ParserBundle\Infrastructure\FileUploader\FileUploaderInterface;
 use Exception;
 
 class SlackMemeImageParserAdapter implements MemeImageParserInterface

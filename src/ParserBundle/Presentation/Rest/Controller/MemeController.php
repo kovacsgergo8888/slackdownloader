@@ -2,6 +2,7 @@
 
 namespace App\ParserBundle\Presentation\Rest\Controller;
 
+use App\ParserBundle\Application\GenerateImagesFromSlackExport\GenerateImagesFromSlackExportQuery;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,9 +21,7 @@ class MemeController extends AbstractController
     public function generateAction(Request $request): JsonResponse
     {
         $body = $request->getContent();
-        $memeCollection = $this->handle(
-            new GenerateMemeCollectionCommand($body)
-        );
+        $memeCollection = $this->handle(new GenerateImagesFromSlackExportQuery($body));
 
         return new JsonResponse($memeCollection);
     }
