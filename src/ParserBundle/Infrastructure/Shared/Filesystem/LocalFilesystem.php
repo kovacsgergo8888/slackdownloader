@@ -84,4 +84,17 @@ class LocalFilesystem implements FilesystemInterface
 
         return $files;
     }
+
+    /**
+     * @return File[]
+     */
+    public function listFiles(string $dir, string $pattern): array
+    {
+        $files = [];
+        foreach ($this->globRecursive($dir, $pattern) as $f) {
+            $files[] = new File($f->getPath());
+        }
+
+        return $files;
+    }
 }

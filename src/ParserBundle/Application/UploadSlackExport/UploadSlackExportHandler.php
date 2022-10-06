@@ -2,8 +2,9 @@
 
 namespace App\ParserBundle\Application\UploadSlackExport;
 
+use App\ParserBundle\Application\Exception\ApplicationException;
 use App\ParserBundle\Domain\InputFileReaderInterface;
-
+use Exception;
 
 class UploadSlackExportHandler
 {
