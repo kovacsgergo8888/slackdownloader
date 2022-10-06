@@ -5,7 +5,6 @@ namespace App\ParserBundle\Presentation\Cli\Symfony;
 use App\ParserBundle\Application\AuthenticateShoprenterWorker\AuthenticateShoprenterWorkerQuery;
 use App\ParserBundle\Application\Exception\ApplicationException;
 use App\ParserBundle\Application\GenerateImagesFromSlackExport\GenerateImagesFromSlackExportQuery;
-use App\ParserBundle\Application\GetImagesFromFile\GetImagesFromFileQuery;
 use App\ParserBundle\Application\UploadSlackExport\UploadSlackExportCommand;
 use App\ParserBundle\Domain\MemeImage;
 use Symfony\Component\Console\Command\Command;
@@ -36,6 +35,7 @@ class SlackdownloaderImageParseCommand extends Command
             ->addArgument('username', InputArgument::REQUIRED, 'Username')
             ->addArgument('password', InputArgument::REQUIRED, 'Password')
             ->addArgument('filePath', InputArgument::REQUIRED, 'File path what is relative to command')
+            ->addArgument('type', InputArgument::REQUIRED, 'The input type: json|zip')
         ;
     }
 
@@ -57,7 +57,7 @@ class SlackdownloaderImageParseCommand extends Command
 
         $json = $this->handle(new UploadSlackExportCommand(
             $filePath,
-            $filePath
+            $input->getArgument('type')
         ));
 
         $urls = $this->handle(new GenerateImagesFromSlackExportQuery(
@@ -67,7 +67,7 @@ class SlackdownloaderImageParseCommand extends Command
 
         /** @var MemeImage $url */
         foreach ($urls as $url) {
-            $io->writeln($url->getUrl());
+            $io->writeln($url->url);
         }
 
         return Command::SUCCESS;
