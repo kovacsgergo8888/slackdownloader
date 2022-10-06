@@ -46,13 +46,13 @@ class FileUploadController extends AbstractController
             /** @var ShoprenterWorker $worker */
             $worker = $this->handle(new GetShoprenterWorkerByIdQuery($this->getUser()->getId()));
 
-//            $json = $this->handle(new UploadSlackExportCommand(
-//                $file->getPathname(),
-//                $file->getClientOriginalName()
-//            ));
+            $json = $this->handle(new UploadSlackExportCommand(
+                $file->getPathname(),
+                $file->getClientOriginalExtension()
+            ));
 
             $urls = $this->handle(new GenerateImagesFromSlackExportQuery(
-                $file->getContent(),
+                $json,
                 $worker->getId()
             ));
 

@@ -4,5 +4,5 @@ namespace App\ParserBundle\Domain;
 
 interface InputFileReaderInterface
 {
-    public function getContents(): string;
+    public function getSlackJson(string $filePath, string $type): string;
 }

@@ -4,7 +4,9 @@ namespace App\ParserBundle\Presentation\Cli\Symfony;
 
 use App\ParserBundle\Application\AuthenticateShoprenterWorker\AuthenticateShoprenterWorkerQuery;
 use App\ParserBundle\Application\Exception\ApplicationException;
+use App\ParserBundle\Application\GenerateImagesFromSlackExport\GenerateImagesFromSlackExportQuery;
 use App\ParserBundle\Application\GetImagesFromFile\GetImagesFromFileQuery;
+use App\ParserBundle\Application\UploadSlackExport\UploadSlackExportCommand;
 use App\ParserBundle\Domain\MemeImage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -53,9 +55,13 @@ class SlackdownloaderImageParseCommand extends Command
             return Command::FAILURE;
         }
 
-        $urls = $this->handle(new GetImagesFromFileQuery(
+        $json = $this->handle(new UploadSlackExportCommand(
             $filePath,
-            'uploadedFile_' . time() . '.json',
+            $filePath
+        ));
+
+        $urls = $this->handle(new GenerateImagesFromSlackExportQuery(
+            $json,
             $worker->getId()
         ));
 

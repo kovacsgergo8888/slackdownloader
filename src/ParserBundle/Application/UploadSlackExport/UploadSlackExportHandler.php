@@ -14,10 +14,15 @@ class UploadSlackExportHandler
 
     public function __invoke(UploadSlackExportCommand $command)
     {
-        return $this->fileReader->read(
-            $command->pathName,
-            $command->clientOriginalName
-        );
+        try {
+            $json = $this->fileReader->getSlackJson($command->filePath, $command->extension);
+        } catch (Exception $e) {
+            throw new ApplicationException(
+                $e->getMessage(),
+                $e->getCode()
+            );
+        }
 
+        return $json;
     }
 }
