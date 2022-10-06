@@ -17,3 +17,4 @@ app_logout:
 rest_generate:
     path: /api/meme/generate
     methods: POST
+    controller: App\ParserBundle\Presentation\Rest\Controller\MemeController::generateAction
