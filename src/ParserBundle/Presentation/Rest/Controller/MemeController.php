@@ -33,7 +33,7 @@ class MemeController extends AbstractController
         );
         try {
             $worker = $this->handle(new AuthenticateShoprenterWorkerQuery(
-                $authorization['username'],
+                $authorization['user'],
                 $authorization['password']
             ));
         } catch (ApplicationException $e) {

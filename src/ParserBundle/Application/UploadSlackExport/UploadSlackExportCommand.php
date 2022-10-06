@@ -9,4 +9,6 @@ class UploadSlackExportCommand
         public readonly string $extension
     ) {
     }
+
+
 }
