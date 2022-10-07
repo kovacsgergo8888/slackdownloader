@@ -24,13 +24,11 @@ class MemeController extends AbstractController
     {
         $authorizationEncoded = $request->headers->get('Authorization');
 
-//        list($user, $password) = explode(':', base64_decode($authorizationEncoded));
-//        var_dump($user, $password);die;
-
         $authorization = array_combine(
             ['user', 'password'],
             explode(':', base64_decode(str_replace('Basic ', '', $authorizationEncoded)))
         );
+
         try {
             $worker = $this->handle(new AuthenticateShoprenterWorkerQuery(
                 $authorization['user'],
